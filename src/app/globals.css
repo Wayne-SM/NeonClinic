@@ -1,0 +1,88 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Core brand colors */
+  --color-primary: #18181b; /* Deep charcoal */
+  --color-primary-foreground: #ffffff;
+  
+  --color-brand-green: #67a233; /* Neon logo green */
+  --color-brand-green-light: #f1f8e9;
+  --color-brand-green-muted: #e4efe0;
+  
+  --color-accent: #f4f4f5;
+  --color-accent-foreground: #18181b;
+  
+  --color-background: #fcfaef; /* Warm off-white / ivory */
+  --color-foreground: #1c1917; /* Deep charcoal */
+  
+  --color-surface: #f7f5e9; /* Soft warm white */
+  --color-surface-muted: #f0ece1;
+  
+  --color-border: #e6e4d8;
+  --color-muted: #78716c;
+  
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-heading: var(--font-playfair), var(--font-inter), system-ui, serif;
+}
+
+/* Base resets & dark mode */
+:root {
+  --background: var(--color-background);
+  --foreground: var(--color-foreground);
+}
+
+.dark {
+  --color-background: #09090b;
+  --color-foreground: #fafafa;
+  --color-surface: #121214;
+  --color-surface-muted: #18181b;
+  --color-border: #27272a;
+  --color-muted: #a1a1aa;
+  --color-primary: #fafafa;
+  --color-primary-foreground: #09090b;
+  --color-accent: #27272a;
+  --color-accent-foreground: #fafafa;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography polish */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  letter-spacing: -0.02em;
+}
+
+/* Hide scrollbar for horizontal scrolling containers */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+@keyframes accordion-down { from { height: 0 } to { height: var(--radix-accordion-content-height) } }
+@keyframes accordion-up { from { height: var(--radix-accordion-content-height) } to { height: 0 } }
+.animate-accordion-down { animation: accordion-down 0.2s ease-out; }
+.animate-accordion-up { animation: accordion-up 0.2s ease-out; }

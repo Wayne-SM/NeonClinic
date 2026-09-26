@@ -17,6 +17,13 @@ export const metadata: Metadata = {
   title: "Dr. Anusha Reddy's | Neon Skin, Hair & Laser Clinic | Hanamkonda",
   description: "Specialized Dermatology, Trichology & Cosmetology in Hanamkonda by Dr. Anusha Reddy, MBBS, DDVL. Expert treatments for acne, hair fall, and laser hair removal.",
   metadataBase: new URL("https://neonclinic.example.com"),
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico" },
+    ],
+    apple: "/icon.svg",
+  },
   openGraph: {
     title: "Neon Skin, Hair & Laser Clinic | Dr. Anusha Reddy",
     description: "Specialized Dermatology, Trichology & Cosmetology in Hanamkonda.",

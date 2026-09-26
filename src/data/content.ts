@@ -153,9 +153,8 @@ export const services = [
 export const galleryImages = [
   { src: "/images/reception.png", alt: "NEON Clinic Reception" },
   { src: "/images/clinic-lounge.png", alt: "NEON Clinic Lounge" },
-  { src: "/images/laser-treatment.png", alt: "Laser Treatment Room" },
-  { src: "/images/dr-signage.png", alt: "Dr. E. Anusha Reddy Signage" },
   { src: "/images/logo-wall.png", alt: "NEON Logo Wall" },
+  { src: "/images/dr-signage.png", alt: "Dr. E. Anusha Reddy Signage" },
 ]
 
 export const faqs = [

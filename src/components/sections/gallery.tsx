@@ -64,9 +64,6 @@ export function Gallery() {
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-500" />
             </motion.div>
 
-            {/* Decorative Element */}
-            <div className="absolute top-[470px] left-[52%] w-2.5 h-2.5 bg-[#1a1a1a] rounded-full hidden lg:block z-0 opacity-80" />
-
             {/* Image 2: Reception / Waiting */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

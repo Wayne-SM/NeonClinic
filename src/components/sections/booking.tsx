@@ -15,6 +15,7 @@ export function Booking() {
     phone: "",
     email: "",
     treatment: "",
+    customConcern: "",
     date: "",
     time: "",
     message: ""
@@ -66,7 +67,17 @@ export function Booking() {
   }
 
   const generateWhatsAppURL = () => {
-    const treatmentName = services.find(s => s.id === formData.treatment)?.title || "Consultation";
+    let treatmentName = "Consultation"
+    let concernLine = ""
+
+    if (formData.treatment === "other") {
+      treatmentName = "Other"
+      if (formData.customConcern.trim()) {
+        concernLine = `Concern: ${formData.customConcern.trim()}\n`
+      }
+    } else {
+      treatmentName = services.find(s => s.id === formData.treatment)?.title || "Consultation"
+    }
     
     const message = `Hello NEON Skin, Hair & Laser Clinics,
 
@@ -74,20 +85,18 @@ I would like to request an appointment.
 
 Name: ${formData.name}
 Phone: +91 ${formData.phone}
-${formData.email ? `Email: ${formData.email}\n` : ''}
-Treatment: ${treatmentName}
-
-Preferred Date: ${formData.date ? format(new Date(formData.date), "dd MMMM yyyy") : ''}
+${formData.email ? `Email: ${formData.email}\n` : ''}Treatment: ${treatmentName}
+${concernLine}Preferred Date: ${formData.date ? format(new Date(formData.date), "dd MMMM yyyy") : ''}
 Preferred Time: ${formData.time}
 ${formData.message ? `\nAdditional Notes:\n${formData.message}` : ''}
 
 Please let me know if this appointment time is available.
 
-Thank you.`;
+Thank you.`
 
-    const encodedMessage = encodeURIComponent(message);
-    const phoneNumber = clinicInfo.whatsapp.replace(/[^0-9]/g, '');
-    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    const encodedMessage = encodeURIComponent(message)
+    const phoneNumber = clinicInfo.whatsapp.replace(/[^0-9]/g, '')
+    return `https://wa.me/${phoneNumber}?text=${encodedMessage}`
   }
 
   return (
@@ -172,9 +181,35 @@ Thank you.`;
                       >
                         <option value="" disabled>Select a treatment</option>
                         {services.map(s => <option key={s.id} value={s.id}>{s.title}</option>)}
+                        <option value="other">Other</option>
                       </select>
                       <ChevronDown className="absolute right-0 bottom-3 w-4 h-4 text-muted pointer-events-none" />
                     </div>
+
+                    {/* Expandable Custom Concern Field when Other is selected */}
+                    <AnimatePresence>
+                      {formData.treatment === "other" && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0, y: -6 }}
+                          animate={{ opacity: 1, height: "auto", y: 0 }}
+                          exit={{ opacity: 0, height: 0, y: -6 }}
+                          transition={{ duration: 0.3 }}
+                          className="space-y-2 overflow-hidden"
+                        >
+                          <label className="text-xs tracking-widest uppercase font-medium text-muted">
+                            Tell us what you&apos;d like help with
+                          </label>
+                          <input 
+                            required
+                            type="text"
+                            value={formData.customConcern}
+                            onChange={(e) => setFormData({...formData, customConcern: e.target.value})}
+                            className="w-full bg-transparent border-b border-border py-2 text-foreground focus:border-brand-green outline-none transition-colors text-sm"
+                            placeholder="Please briefly describe your concern or the treatment you're interested in."
+                          />
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
                     <div className="grid grid-cols-2 gap-4">
                       <div className="space-y-2 relative">

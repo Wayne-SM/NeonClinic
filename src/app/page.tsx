@@ -4,12 +4,14 @@ import { Hero } from "@/components/sections/hero"
 import { About } from "@/components/sections/about"
 import { Services } from "@/components/sections/services"
 import { FeaturedTreatments } from "@/components/sections/featured"
+import { FindYourTreatment } from "@/components/sections/treatment-finder"
 import { Gallery } from "@/components/sections/gallery"
 import { Doctor } from "@/components/sections/doctor"
 import { PatientJourney } from "@/components/sections/journey"
 import { WhyNeon } from "@/components/sections/why-neon"
 import { Booking } from "@/components/sections/booking"
 import { Contact } from "@/components/sections/contact"
+import { GoogleReviews } from "@/components/sections/google-reviews"
 
 export default function Home() {
   return (
@@ -20,12 +22,14 @@ export default function Home() {
         <About />
         <Services />
         <FeaturedTreatments />
+        <FindYourTreatment />
         <Gallery />
         <Doctor />
         <PatientJourney />
         <WhyNeon />
         <Booking />
         <Contact />
+        <GoogleReviews />
       </main>
       <Footer />
     </>

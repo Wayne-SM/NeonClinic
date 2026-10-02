@@ -119,7 +119,11 @@ export function Services() {
 
           {/* Right: Large Image */}
           <div className="w-1/2 relative h-[700px]">
-            <div className="w-full h-full relative rounded-[2rem] overflow-hidden bg-surface shadow-2xl">
+            <Link 
+              href={`/treatments/${activeService.slug}`}
+              data-cursor="EXPLORE"
+              className="block w-full h-full relative rounded-[2rem] overflow-hidden bg-surface shadow-2xl group cursor-pointer"
+            >
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeService.id}
@@ -133,14 +137,14 @@ export function Services() {
                     src={activeService.image}
                     alt={activeService.title}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
                     sizes="50vw"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent group-hover:from-black/30 transition-all duration-500" />
+                  <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[2rem]" />
                 </motion.div>
               </AnimatePresence>
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/5 rounded-[2rem]" />
-            </div>
+            </Link>
           </div>
         </div>
 

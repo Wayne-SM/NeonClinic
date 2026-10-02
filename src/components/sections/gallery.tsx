@@ -56,7 +56,7 @@ export function Gallery() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              data-cursor="OPEN"
+              data-cursor="VIEW"
               className="absolute top-0 right-[2%] w-[600px] h-[420px] rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer group z-10"
               onClick={() => setSelectedIndex(0)}
             >
@@ -70,7 +70,7 @@ export function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              data-cursor="OPEN"
+              data-cursor="VIEW"
               className="absolute top-[350px] left-[4%] w-[460px] h-[330px] rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer group z-20"
               onClick={() => setSelectedIndex(1)}
             >
@@ -84,7 +84,7 @@ export function Gallery() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              data-cursor="OPEN"
+              data-cursor="VIEW"
               className="absolute bottom-[20px] right-[12%] w-[420px] h-[320px] rounded-[2rem] overflow-hidden shadow-2xl cursor-pointer group z-10"
               onClick={() => setSelectedIndex(2)}
             >

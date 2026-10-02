@@ -1,7 +1,7 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useScroll, useTransform } from "framer-motion"
+import { useRef, useState } from "react"
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
@@ -19,6 +19,7 @@ const staggerContainer = {
 }
 
 export function Doctor() {
+  const [isProfileOpen, setIsProfileOpen] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -65,11 +66,72 @@ export function Doctor() {
               </p>
             </motion.div>
 
-            <motion.div variants={fadeUp} className="pt-4">
-              <div className="h-[1px] w-full max-w-[200px] bg-black/10 mb-5" />
-              <p className="text-[11px] font-semibold tracking-[0.2em] text-[#111] uppercase">
-                MBBS · DDVL
-              </p>
+            <motion.div variants={fadeUp} className="pt-4 space-y-4">
+              <div className="h-[1px] w-full max-w-[200px] bg-black/10" />
+              <div className="flex items-center justify-between max-w-sm">
+                <p className="text-[11px] font-semibold tracking-[0.2em] text-[#111] uppercase">
+                  MBBS · DDVL
+                </p>
+                <button
+                  type="button"
+                  onClick={() => setIsProfileOpen(!isProfileOpen)}
+                  aria-expanded={isProfileOpen}
+                  aria-controls="doctor-profile-details"
+                  className="group flex items-center gap-2 text-[10px] font-bold tracking-[0.15em] uppercase text-[#111] hover:text-[#84cc16] transition-colors py-2 px-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-[#84cc16] rounded"
+                >
+                  <span>{isProfileOpen ? "Close Profile" : "View Profile"}</span>
+                  <motion.span
+                    animate={{ rotate: isProfileOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="inline-block"
+                  >
+                    ↓
+                  </motion.span>
+                </button>
+              </div>
+
+              {/* Expandable Editorial Profile Details */}
+              <AnimatePresence>
+                {isProfileOpen && (
+                  <motion.div
+                    id="doctor-profile-details"
+                    initial={{ opacity: 0, height: 0, y: -10 }}
+                    animate={{ opacity: 1, height: "auto", y: 0 }}
+                    exit={{ opacity: 0, height: 0, y: -10 }}
+                    transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                    className="overflow-hidden pt-2"
+                  >
+                    <div className="p-6 rounded-2xl bg-white/80 border border-black/5 shadow-sm space-y-4 text-xs">
+                      <div>
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-[#84cc16] block mb-1">
+                          Qualifications
+                        </span>
+                        <p className="text-[#333] font-medium leading-relaxed">
+                          MBBS · DDVL (Dermatology, Venereology & Leprosy)
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-[#84cc16] block mb-1">
+                          Clinical Scope
+                        </span>
+                        <p className="text-[#555] leading-relaxed">
+                          Evidence-based medical dermatology, clinical trichology for scalp and hair preservation, and US-FDA approved aesthetic laser protocols.
+                        </p>
+                      </div>
+
+                      <div>
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-[#84cc16] block mb-1">
+                          Consultation Approach
+                        </span>
+                        <p className="text-[#555] leading-relaxed">
+                          Focused on individualized diagnostics, clear treatment pathways, and safe clinical practices tailored to your specific skin and hair profile.
+                        </p>
+                      </div>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
 
